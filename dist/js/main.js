@@ -1,13 +1,11 @@
 'use strict'
 
 var SQUARE_SIZE = 3;
-var DIMENSION = 1;
 var renderMode = '';
 var canvas = '';
 var ctx;
 var width;
 var height;
-var numSquares;
 
 window.onload = function() {
   var renderButton = document.getElementById("renderButton");
@@ -31,9 +29,11 @@ function render() {
   canvas = document.getElementById('Canvas');
 
   ctx = canvas.getContext('2d');
-  width = ctx.canvas.width = window.innerWidth * DIMENSION - 30;
-  height = ctx.canvas.height = window.innerHeight * DIMENSION - 30;
-  numSquares = width/SQUARE_SIZE;
+  ctx.canvas.width = Math.floor(window.innerWidth * 0.8)- 30;
+  ctx.canvas.height = window.innerHeight - 30;
+
+  width = Math.floor(ctx.canvas.width / SQUARE_SIZE) - 1;
+  height = Math.floor(ctx.canvas.height / SQUARE_SIZE) - 1;
 
   if (canvas.getContext) {
     switch (imageType) {
@@ -48,14 +48,6 @@ function render() {
 }
 
 function spiral() {
-  var w, h;
-  w = h = Math.min(window.innerWidth, window.innerHeight);
-
-  var numSquares = w/SQUARE_SIZE;
-
-  ctx.canvas.width = w;
-  ctx.canvas.height = h;
-
   var Direction = {
     RIGHT: 0,
     UP: 1,
@@ -72,17 +64,19 @@ function spiral() {
     }
   }
 
-  var x, y;
-  x = y =  Math.floor(numSquares/2);
-
   var direction = Direction.RIGHT;
   var maxSideLength = 0;
   var sideLength = 0;
   var sideCount = 0;
   var pixelCount = 0;
+  var x, y;
+  var length = Math.min(width, height);
+  var maxCount = length * length;
 
-  while (++pixelCount <= numSquares*numSquares) {
+  x = y = Math.floor(length / 2);
 
+
+  while (++pixelCount <= maxCount) {
     renderPixel(pixelCount, x, y);
 
     switch (direction) {
@@ -102,20 +96,20 @@ function spiral() {
       if (sideCount === 2) {
         sideCount = 0;
         maxSideLength++;
-      } else {
       }
     }
   }
-
 }
 
 function triangle() {
-  var x = Math.floor(width/SQUARE_SIZE/2);
+  var x = Math.floor(width/2);
   var y = 1;
   var pixelCount = 0;
+  var maxCount = (2 * height > width) ? width / 2 : height;
 
-  while (++pixelCount <= height * height) {
+  maxCount *= maxCount;
 
+  while (++pixelCount <= maxCount) {
     renderPixel(pixelCount, x, y);
 
     if(pixelCount <= y*y - 1) {
@@ -150,7 +144,7 @@ function renderPixel(pixelCount, x, y) {
   ctx.fillStyle="#eeeeee";
   ctx.fillRect(x*SQUARE_SIZE, y*SQUARE_SIZE, SQUARE_SIZE, SQUARE_SIZE);
 
-  if (divCount == 0) {
+  if (divCount == 0) {  // primes
     if (renderMode !== 'composites') {
       ctx.fillStyle="#005e61";
       ctx.fillRect(x*SQUARE_SIZE, y*SQUARE_SIZE, SQUARE_SIZE, SQUARE_SIZE);
@@ -166,11 +160,12 @@ function renderPixel(pixelCount, x, y) {
 }
 
 function divisorCount (num) {
-  var count = 0;
 
   if(num == 1) return 1;
 
+  var count = 0;
   var middle = Math.sqrt(num);
+
   for (var i = 2; i <= middle; i++) {
     if (num % i == 0) {
       count++;
