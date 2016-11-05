@@ -141,8 +141,6 @@ function rectangle() {
 
 function renderPixel(pixelCount, x, y) {
   var divCount = divisorCount(pixelCount);
-  ctx.fillStyle="#eeeeee";
-  ctx.fillRect(x*SQUARE_SIZE, y*SQUARE_SIZE, SQUARE_SIZE, SQUARE_SIZE);
 
   if (divCount == 0) {  // primes
     if (renderMode !== 'composites') {
