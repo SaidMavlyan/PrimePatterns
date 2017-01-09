@@ -1,0 +1,45 @@
+{
+  "name": "prime-patterns",
+  "version": "1.0.0",
+  "description": "View prime number patterns in Ulam Spiral, Klauber triangle and random rectangle",
+  "main": "gulpfile.js",
+  "dependencies": {},
+  "devDependencies": {
+    "del": "^2.2.2",
+    "gulp": "^3.9.1",
+    "gulp-autoprefixer": "^3.1.1",
+    "gulp-cache": "^0.4.5",
+    "gulp-concat": "^2.6.1",
+    "gulp-cssnano": "^2.1.2",
+    "gulp-imagemin": "^3.1.1",
+    "gulp-jshint": "^2.0.4",
+    "gulp-newer": "^1.3.0",
+    "gulp-notify": "^2.2.0",
+    "gulp-rename": "^1.2.2",
+    "gulp-run": "^1.7.1",
+    "gulp-sass": "^2.3.2",
+    "gulp-uglify": "^2.0.0",
+    "jshint": "^2.9.4"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/krmld/PrimePatterns.git"
+  },
+  "keywords": [
+    "prime",
+    "numbers",
+    "ulam",
+    "spiral",
+    "klauber",
+    "triangle"
+  ],
+  "author": "krmld",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/krmld/PrimePatterns/issues"
+  },
+  "homepage": "https://github.com/krmld/PrimePatterns#readme"
+}

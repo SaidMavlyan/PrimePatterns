@@ -1,0 +1,17 @@
+# Numerous always-ignore extensions
+*.diff
+*.err
+*.log
+*.orig
+*.rej
+*.swo
+*.swp
+*.vi
+*.zip
+*~
+
+# Handy scripts
+todo.md
+
+# Folders to ignore
+node_modules
